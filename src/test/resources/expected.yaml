@@ -1,0 +1,8 @@
+users:
+  - id: 1
+    name: 一郎
+  - id: 2
+    name: 次郎
+  - id: 3
+    name: 三郎
+
