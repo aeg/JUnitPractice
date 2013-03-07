@@ -9,8 +9,6 @@ import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -53,8 +51,9 @@ public class UserDaoYAMLTest {
             sut.insert("三郎");
             // Verify
             ITable actual = tester.getConnection().createDataSet().getTable("users");
+            InputStream fixtureIn = getClass().getResourceAsStream("expected.yaml");
 
-            ITable expected = new YamlDataSet("expected.yaml").getTable("users");
+            ITable expected = new YamlDataSet(fixtureIn).getTable("users");
             assertThat(actual, is(tableOf(expected)));
         }
 
@@ -90,7 +89,9 @@ public class UserDaoYAMLTest {
             sut.insert("Gorou");
             //Verify
             ITable actual = testr.getConnection().createDataSet().getTable("users");
-            ITable expected = new YamlDataSet("zero_expected.yaml").getTable("users");
+            InputStream fixtureIn = getClass().getResourceAsStream("zero_expected.yaml");
+
+            ITable expected = new YamlDataSet(fixtureIn).getTable("users");
             assertThat(actual, is(tableOf(expected)));
         }
 
@@ -116,7 +117,9 @@ public class UserDaoYAMLTest {
 
             //Verify
             ITable actual = tester.getConnection().createDataSet().getTable("users");
-            ITable expected = new YamlDataSet("updated_expected.yaml").getTable("users");
+            InputStream fixtureIn = getClass().getResourceAsStream("updated_expected.yaml");
+
+            ITable expected = new YamlDataSet(fixtureIn).getTable("users");
 
             SortedTable sortedActual = new SortedTable(actual, new String[]{"id"});
             SortedTable sortedExpected = new SortedTable(expected, new String[]{"id"});
@@ -151,8 +154,9 @@ public class UserDaoYAMLTest {
 
         @Override
         protected org.dbunit.dataset.IDataSet createDataSet() throws Exception {
-            //InputStream fixtureIn = getClass().getResourceAsStream(fixture);
-            return new YamlDataSet(fixture);
+            InputStream fixtureIn = getClass().getResourceAsStream(fixture);
+
+            return new YamlDataSet(fixtureIn);
         }
     }
 

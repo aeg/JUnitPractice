@@ -16,9 +16,9 @@ public class YamlDataSet extends AbstractDataSet {
 
     private OrderedTableNameMap _tables;
 
-    public YamlDataSet(File file) throws IOException, DataSetException {
-        this(new FileInputStream(file));
-    }
+//    public YamlDataSet(File file) throws IOException, DataSetException {
+//        this(new FileInputStream(file));
+//    }
 
     public YamlDataSet(InputStream in) throws IOException, DataSetException {
         _tables = super.createTableNameMap();
@@ -40,10 +40,10 @@ public class YamlDataSet extends AbstractDataSet {
         }
     }
 
-    public YamlDataSet(String fileName) throws IOException, DataSetException {
+//    public YamlDataSet(String fileName) throws IOException, DataSetException {
 //        this(getClass().getResourceAsStream(fileName));
-        this(new FileInputStream(fileName));
-    }
+//        this(new FileInputStream(fileName));
+//    }
 
     YamlTable createTable(String tableName, List<Map> rows) {
         YamlTable table = new YamlTable(tableName, rows.size() > 0 ?
