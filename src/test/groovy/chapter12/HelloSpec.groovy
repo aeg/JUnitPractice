@@ -7,6 +7,7 @@ class HelloSpec extends Specification {
   def "あああ"() {
     given:
 
+    println "hello"
 expect:
     true
 
